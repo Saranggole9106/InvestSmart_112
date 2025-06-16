@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Heatmap - InvestSmart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .heatmap-section {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--card-bg, #252525);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(77,166,255,0.10);
+            padding: 2rem;
+        }
+        #heatmapChart {
+            min-height: 400px;
+            height: 400px;
+            width: 100%;
+            display: block;
+        }
+        h2 {
+            color: var(--accent-blue, #4da6ff);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="heatmap-page">
+    <header>
+        <button id="back-arrow" class="back-arrow" title="Back to Dashboard">&#8592;</button>
+        <nav class="navbar">
+            <div class="navbar-brand">InvestSmart</div>
+            <ul class="navbar-links">
+                <li><a href="#" class="active">Heat Map</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="heatmap-section">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                <h2 style="margin-bottom: 1.5rem;">Today's Performance</h2>
+                <div class="heatmap-legend">
+                    <span class="legend-color" style="background:#ff3b1f"></span> -5%
+                    <span class="legend-color" style="background:#ff9800"></span> -2%
+                    <span class="legend-color" style="background:#ffe066"></span> 0%
+                    <span class="legend-color" style="background:#a3e635"></span> +2%
+                    <span class="legend-color" style="background:#22c55e"></span> +5%
+                </div>
+            </div>
+            <div class="heatmap-grid" id="heatmapGrid"></div>
+        </section>
+    </main>
+    <script src="js/heatmap.js"></script>
+    <script>
+    document.getElementById('back-arrow').onclick = function() {
+        document.body.classList.add('fade-out');
+        setTimeout(function() { window.location.href = 'index.html'; }, 400);
+    };
+    </script>
+</body>
+</html> 

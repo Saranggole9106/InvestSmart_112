@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Stock - InvestSmart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/add-stock.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>InvestSmart</h1>
+            <div class="user-info">
+                <span id="user-name">Welcome, User!</span>
+                <button onclick="authManager.logout()" class="logout-btn">Logout</button>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <button id="theme-toggle" class="interactive-button">🌙 Toggle Theme</button>
+            <a href="index.html" class="nav-link">📊 Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="add-stock-container">
+        <div class="add-stock-card">
+            <h2>Add Stock to Portfolio</h2>
+            <form id="add-stock-form" onsubmit="handleAddStock(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="stock-symbol">Stock Symbol</label>
+                        <input type="text" id="stock-symbol" required placeholder="e.g., AAPL" style="text-transform: uppercase;">
+                        <div class="stock-suggestions" id="stock-suggestions"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company-name">Company Name</label>
+                        <input type="text" id="company-name" placeholder="Auto-filled" readonly>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" required min="1" placeholder="Number of shares">
+                    </div>
+                    <div class="form-group">
+                        <label for="buy-price">Buy Price ($)</label>
+                        <input type="number" id="buy-price" required step="0.01" min="0" placeholder="Price per share">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="buy-date">Purchase Date</label>
+                        <input type="date" id="buy-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="current-price">Current Price ($)</label>
+                        <input type="number" id="current-price" step="0.01" min="0" placeholder="Auto-fetched" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes (Optional)</label>
+                    <textarea id="notes" placeholder="Add any notes about this investment..."></textarea>
+                </div>
+
+                <div class="investment-summary">
+                    <h3>Investment Summary</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span>Total Investment:</span>
+                            <span id="total-investment">$0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Current Value:</span>
+                            <span id="current-value">$0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Profit/Loss:</span>
+                            <span id="profit-loss" class="price-neutral">$0.00 (0.00%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" onclick="window.location.href='index.html'" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="add-btn">Add to Portfolio</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="recent-stocks">
+            <h3>Recently Added Stocks</h3>
+            <div id="recent-stocks-list">
+                <!-- Recent stocks will be populated here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/add-stock.js"></script>
+</body>
+</html>
+

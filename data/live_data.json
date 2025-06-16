@@ -1,0 +1,272 @@
+{
+  "stocks": [
+    {
+      "symbol": "AAPL",
+      "companyName": "Apple Inc.",
+      "price": 196.4499969482422,
+      "change": -2.750003051757801,
+      "percentChange": -1.3805236203603422,
+      "volume": 51362400,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 200.37,
+      "low": 195.77,
+      "fiftyTwoWeekHigh": 260.1,
+      "fiftyTwoWeekLow": 169.21
+    },
+    {
+      "symbol": "MSFT",
+      "companyName": "Microsoft Corporation",
+      "price": 474.9599914550781,
+      "change": -3.9100085449218795,
+      "percentChange": -0.8165073078125337,
+      "volume": 16806900,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 479.18,
+      "low": 472.8,
+      "fiftyTwoWeekHigh": 480.42,
+      "fiftyTwoWeekLow": 344.79
+    },
+    {
+      "symbol": "GOOGL",
+      "companyName": "Alphabet Inc.",
+      "price": 174.6699981689453,
+      "change": -1.0300018310546761,
+      "percentChange": -0.5862275646298669,
+      "volume": 27641100,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 177.13,
+      "low": 172.385,
+      "fiftyTwoWeekHigh": 207.05,
+      "fiftyTwoWeekLow": 140.53
+    },
+    {
+      "symbol": "AMZN",
+      "companyName": "Amazon.com, Inc.",
+      "price": 212.10000610351562,
+      "change": -1.139993896484384,
+      "percentChange": -0.5346060291147927,
+      "volume": 29300100,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 214.05,
+      "low": 209.66,
+      "fiftyTwoWeekHigh": 242.52,
+      "fiftyTwoWeekLow": 151.61
+    },
+    {
+      "symbol": "NVDA",
+      "companyName": "NVIDIA Corporation",
+      "price": 141.97000122070312,
+      "change": -3.029998779296875,
+      "percentChange": -2.089654330549569,
+      "volume": 180374800,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 143.58,
+      "low": 140.855,
+      "fiftyTwoWeekHigh": 153.13,
+      "fiftyTwoWeekLow": 86.62
+    },
+    {
+      "symbol": "TSLA",
+      "companyName": "Tesla, Inc.",
+      "price": 325.30999755859375,
+      "change": 6.199997558593736,
+      "percentChange": 1.9429029358508778,
+      "volume": 128495300,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 332.98,
+      "low": 313.3,
+      "fiftyTwoWeekHigh": 488.54,
+      "fiftyTwoWeekLow": 177.0
+    },
+    {
+      "symbol": "META",
+      "companyName": "Meta Platforms, Inc.",
+      "price": 682.8699951171875,
+      "change": -10.490004882812514,
+      "percentChange": -1.5129232841254923,
+      "volume": 9261100,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 694.55,
+      "low": 681.01,
+      "fiftyTwoWeekHigh": 740.91,
+      "fiftyTwoWeekLow": 442.65
+    },
+    {
+      "symbol": "JPM",
+      "companyName": "JPMorgan Chase & Co.",
+      "price": 264.95001220703125,
+      "change": -3.289987792968759,
+      "percentChange": -1.2265090191502979,
+      "volume": 7095300,
+      "marketCap": "N/A",
+      "sector": "Technology",
+      "pe_ratio": 0,
+      "dividend_yield": 0,
+      "high": 267.02,
+      "low": 262.71,
+      "fiftyTwoWeekHigh": 280.25,
+      "fiftyTwoWeekLow": 190.9
+    }
+  ],
+  "indices": [
+    {
+      "name": "S&P 500",
+      "value": 5976.97021484375,
+      "change": -68.28978515625022,
+      "percentChange": -1.1296418211334205,
+      "high": 6026.16,
+      "low": 5963.21
+    },
+    {
+      "name": "NASDAQ",
+      "value": 19406.830078125,
+      "change": -255.65392187500038,
+      "percentChange": -1.3002117223591911,
+      "high": 19591.873,
+      "low": 19367.416
+    },
+    {
+      "name": "Dow Jones",
+      "value": 42197.7890625,
+      "change": -769.8309375000026,
+      "percentChange": -1.7916536626883282,
+      "high": 42602.48,
+      "low": 42081.09
+    }
+  ],
+  "portfolio": {
+    "holdings": [
+      {
+        "symbol": "AAPL",
+        "quantity": 10,
+        "buyPrice": 165.0,
+        "currentPrice": 196.4499969482422,
+        "buyDate": "2024-01-15"
+      },
+      {
+        "symbol": "MSFT",
+        "quantity": 5,
+        "buyPrice": 425.0,
+        "currentPrice": 474.9599914550781,
+        "buyDate": "2024-02-20"
+      }
+    ],
+    "totalValue": 6451.5,
+    "totalInvested": 6410.0,
+    "totalPnL": 41.5,
+    "totalPnLPercent": 0.65
+  },
+  "aiRecommendations": [
+    {
+      "symbol": "AAPL",
+      "action": "HOLD",
+      "confidence": 85,
+      "reason": "Strong fundamentals and upcoming product launches",
+      "targetPrice": 180.0,
+      "riskLevel": "Medium"
+    },
+    {
+      "symbol": "TSLA",
+      "action": "BUY",
+      "confidence": 78,
+      "reason": "Electric vehicle market expansion and autonomous driving progress",
+      "targetPrice": 280.0,
+      "riskLevel": "High"
+    },
+    {
+      "symbol": "JPM",
+      "action": "BUY",
+      "confidence": 72,
+      "reason": "Rising interest rates benefit banking sector",
+      "targetPrice": 210.0,
+      "riskLevel": "Low"
+    }
+  ],
+  "socialTrading": {
+    "leaderboard": [
+      {
+        "username": "InvestorPro",
+        "totalReturn": 24.5,
+        "followers": 1250,
+        "winRate": 68.2,
+        "riskScore": 6.5
+      },
+      {
+        "username": "TechTrader",
+        "totalReturn": 19.8,
+        "followers": 890,
+        "winRate": 72.1,
+        "riskScore": 7.2
+      },
+      {
+        "username": "ValueHunter",
+        "totalReturn": 15.3,
+        "followers": 2100,
+        "winRate": 65.8,
+        "riskScore": 4.8
+      }
+    ],
+    "trendingStocks": [
+      {
+        "symbol": "NVDA",
+        "mentions": 1250,
+        "sentiment": "Bullish",
+        "socialScore": 8.7
+      },
+      {
+        "symbol": "TSLA",
+        "mentions": 980,
+        "sentiment": "Bullish",
+        "socialScore": 7.9
+      },
+      {
+        "symbol": "AAPL",
+        "mentions": 750,
+        "sentiment": "Neutral",
+        "socialScore": 6.5
+      }
+    ]
+  },
+  "marketNews": [
+    {
+      "headline": "Tech Stocks Rally on AI Optimism",
+      "summary": "Major technology companies see gains as artificial intelligence investments show promise",
+      "timestamp": "2025-06-14T10:30:00Z",
+      "sentiment": "Positive"
+    },
+    {
+      "headline": "Federal Reserve Maintains Interest Rates",
+      "summary": "Central bank keeps rates steady amid economic uncertainty",
+      "timestamp": "2025-06-14T09:15:00Z",
+      "sentiment": "Neutral"
+    },
+    {
+      "headline": "Electric Vehicle Sales Surge in Q2",
+      "summary": "EV manufacturers report strong quarterly performance",
+      "timestamp": "2025-06-14T08:45:00Z",
+      "sentiment": "Positive"
+    }
+  ],
+  "lastUpdated": 1749913421.4969306
+}

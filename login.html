@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestSmart - Login</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>InvestSmart</h1>
+                <p>Your Smart Investment Companion</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showTab('login', event)">Login</button>
+                <button class="tab-btn" onclick="showTab('signup', event)">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form active">
+                <h2>Welcome Back</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="Enter your password">
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
+                
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                
+                <button class="google-btn" onclick="handleGoogleLogin()">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20">
+                    Continue with Google
+                </button>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form">
+                <h2>Create Account</h2>
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required placeholder="Create a password" minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" required placeholder="Confirm your password">
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agree-terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+                
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                
+                <button class="google-btn" onclick="handleGoogleSignup()">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20">
+                    Sign up with Google
+                </button>
+            </div>
+        </div>
+        
+        <div class="auth-background">
+            <div class="floating-card">
+                <h3>🌟 Community Insights</h3>
+                <p>See what top investors are watching and discussing right now.</p>
+            </div>
+            <div class="floating-card">
+                <h3>🔔 Smart Alerts</h3>
+                <p>Get notified instantly about market moves and your portfolio changes.</p>
+            </div>
+            <div class="floating-card">
+                <h3>📈 Real-time Tracking</h3>
+                <p>Monitor your investments with live market data</p>
+            </div>
+            <div class="floating-card">
+                <h3>🤖 AI Recommendations</h3>
+                <p>Get smart investment suggestions powered by AI</p>
+            </div>
+            <div class="floating-card">
+                <h3>📊 Advanced Charts</h3>
+                <p>Analyze trends with interactive candlestick charts</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+    
+    <script src="js/auth.js"></script>
+</body>
+</html>

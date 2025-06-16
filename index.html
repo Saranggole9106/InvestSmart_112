@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestSmart - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js for interactive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>InvestSmart</h1>
+            <div class="market-mood">
+                <div class="mood-indicator mood-bullish"></div>
+                <span>Market Mood: Bullish</span>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="add-stock.html" class="interactive-button">➕ Add Stock</a>
+            <a href="heatmap.html" class="interactive-button">🔥 Heat Map</a>
+            <button onclick="authManager.logout()" class="interactive-button">🚪 Logout</button>
+            <button id="theme-toggle" class="interactive-button" title="Toggle dark/light mode">🌓</button>
+            <input type="text" id="quick-search" placeholder="Search stocks...">
+            <div class="user-menu">
+                <span id="user-name-header">Welcome!</span>
+                <div class="user-dropdown">
+                    <button class="user-btn" onclick="toggleUserMenu()">
+                        <span id="user-initials">U</span>
+                    </button>
+                    <div class="dropdown-content" id="user-dropdown">
+                        <a href="#" onclick="showAccountModal()">👤 Account</a>
+                    </div>
+                </div>
+            </div>
+            <button id="refresh-data" class="interactive-button">🔄 Refresh</button>
+        </nav>
+    </header>
+
+    <div id="stock-ticker" class="stock-ticker">
+      <div class="ticker-content" id="ticker-content"></div>
+    </div>
+
+    <main>
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#portfolio" onclick="showSection('portfolio')" class="nav-link active">📊 Portfolio</a></li>
+                    <li><a href="#market-indices" onclick="showSection('market-indices')" class="nav-link">📈 Market Indices</a></li>
+                    <li><a href="#stock-list" onclick="showSection('stock-list')" class="nav-link">📋 Stock List</a></li>
+                    <li><a href="#ai-recommendations" onclick="showSection('ai-recommendations')" class="nav-link">🤖 AI Recommendations</a></li>
+                    <li><a href="#social-trading" onclick="showSection('social-trading')" class="nav-link">👥 Social Trading</a></li>
+                    <li><a href="#market-news" onclick="showSection('market-news')" class="nav-link">📰 Market News</a></li>
+                    <li><a href="#charts" onclick="showSection('charts')" class="nav-link">📊 Charts</a></li>
+                </ul>
+            </nav>
+            
+            <div class="quick-stats">
+                <h3>Quick Stats</h3>
+                <div class="stat-item">
+                    <span>Last Updated:</span>
+                    <span id="last-updated">--:--</span>
+                </div>
+                <div class="stat-item">
+                    <span>Active Alerts:</span>
+                    <span id="active-alerts">0</span>
+                </div>
+            </div>
+        </aside>
+
+        <section class="content">
+            <div id="portfolio" class="dashboard-section">
+                <h2>My Portfolio</h2>
+                <div class="portfolio-summary">
+                    <div class="summary-card">
+                        <h3>Total Value</h3>
+                        <p id="total-value">$0.00</p>
+                        <span class="change positive">+0.00%</span>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total Invested</h3>
+                        <p id="total-invested">$0.00</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total P&L</h3>
+                        <p id="total-pnl">$0.00</p>
+                        <span class="change positive">+0.00%</span>
+                    </div>
+                </div>
+                <div class="portfolio-chart">
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+                <div class="holdings-list">
+                    <h3>Holdings</h3>
+                    <div class="holdings-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th>Shares</th>
+                                    <th>Avg Price</th>
+                                    <th>Current Price</th>
+                                    <th>Value</th>
+                                    <th>P&L</th>
+                                </tr>
+                            </thead>
+                            <tbody id="holdings-body">
+                                <!-- Holdings will be populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="market-indices" class="dashboard-section" style="display: none;">
+                <h2>Market Indices</h2>
+                <div class="indices-grid">
+                    <div class="index-card">
+                        <h3>S&P 500</h3>
+                        <p class="index-value">4,783.45</p>
+                        <span class="change positive">+1.23%</span>
+                    </div>
+                    <div class="index-card">
+                        <h3>NASDAQ</h3>
+                        <p class="index-value">16,742.38</p>
+                        <span class="change positive">+1.45%</span>
+                    </div>
+                    <div class="index-card">
+                        <h3>DOW</h3>
+                        <p class="index-value">37,305.16</p>
+                        <span class="change negative">-0.12%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="stock-list" class="dashboard-section" style="display: none;">
+                <h2>Stock List</h2>
+                <div class="stock-filters">
+                    <input type="text" placeholder="Search stocks..." id="stock-search">
+                    <select id="sector-filter">
+                        <option value="">All Sectors</option>
+                        <option value="tech">Technology</option>
+                        <option value="finance">Finance</option>
+                        <option value="healthcare">Healthcare</option>
+                    </select>
+                </div>
+                <div class="stock-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Change</th>
+                                <th>Volume</th>
+                                <th>Market Cap</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stock-list-body">
+                            <!-- Stock list will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="ai-recommendations" class="dashboard-section" style="display: none;">
+                <h2>AI-Powered Recommendations</h2>
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <h3>Top Buy</h3>
+                        <div class="stock-info">
+                            <span class="symbol">AAPL</span>
+                            <span class="name">Apple Inc.</span>
+                        </div>
+                        <p class="recommendation-reason">Strong earnings growth and positive market sentiment</p>
+                        <div class="confidence-meter">
+                            <div class="confidence-bar" style="width: 85%"></div>
+                            <span>85% Confidence</span>
+                        </div>
+                    </div>
+                    <!-- More recommendation cards will be added dynamically -->
+                </div>
+                <!-- Mock Trading Center -->
+                <div id="mock-trading-center" class="trading-center">
+                  <h3>Mock Trading Center</h3>
+                  <form id="mock-trade-form" autocomplete="off">
+                    <label>
+                      Stock:
+                      <select id="mock-stock-symbol">
+                        <option value="AAPL">AAPL</option>
+                        <option value="MSFT">MSFT</option>
+                        <option value="GOOGL">GOOGL</option>
+                        <option value="TSLA">TSLA</option>
+                      </select>
+                    </label>
+                    <label>
+                      Action:
+                      <select id="mock-trade-action">
+                        <option value="buy">Buy</option>
+                        <option value="sell">Sell</option>
+                      </select>
+                    </label>
+                    <label>
+                      Quantity:
+                      <input type="number" id="mock-trade-quantity" min="1" value="1" required>
+                    </label>
+                    <div>
+                      <span id="mock-trade-price">Price: $0.00</span>
+                      <span id="mock-trade-total" style="margin-left:1em;">Total: $0.00</span>
+                    </div>
+                    <button type="submit">Execute Trade</button>
+                  </form>
+                  <div id="mock-trade-result"></div>
+                  <div id="mock-trade-lightning" class="lightning" style="display:none;"></div>
+                  <div id="mock-trade-history"></div>
+                </div>
+            </div>
+
+            <div id="social-trading" class="dashboard-section" style="display: none;">
+                <h2>Social Trading</h2>
+                <div class="leaderboard">
+                    <h3>Top Traders</h3>
+                    <div class="leaderboard-list">
+                        <!-- Leaderboard will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="market-news" class="dashboard-section" style="display: none;">
+                <h2>Market News</h2>
+                <div class="news-feed">
+                    <!-- News items will be populated dynamically -->
+                </div>
+            </div>
+
+            <div id="charts" class="dashboard-section" style="display: none;">
+                <h2>Interactive Charts</h2>
+                <div class="chart-controls">
+                    <select id="chart-symbol">
+                        <option value="AAPL">Apple (AAPL)</option>
+                        <option value="MSFT">Microsoft (MSFT)</option>
+                        <option value="GOOGL">Google (GOOGL)</option>
+                        <option value="NVDA">NVIDIA (NVDA)</option>
+                    </select>
+                    <select id="chart-timeframe">
+                        <option value="1d">1 Day</option>
+                        <option value="1w">1 Week</option>
+                        <option value="1m">1 Month</option>
+                        <option value="3m">3 Months</option>
+                    </select>
+                </div>
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper" style="grid-column: 1 / -1;">
+                        <canvas id="candlestickChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 InvestSmart - Real-time Stock Market Tracking</p>
+    </footer>
+
+    <!-- Account Modal -->
+    <div id="account-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAccountModal()">&times;</span>
+            <h2>Account Settings</h2>
+            <div class="account-settings">
+                <div class="form-group">
+                    <label for="user-name">Full Name</label>
+                    <input type="text" id="user-name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="currency-preference">Preferred Currency</label>
+                    <select id="currency-preference">
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                    </select>
+                </div>
+                <button onclick="saveAccountSettings()" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+    // Theme toggle logic
+    (function() {
+        const btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', function() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        // On page load, set theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+    })();
+    </script>
+</body>
+</html>
+
